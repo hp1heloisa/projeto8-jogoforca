@@ -32,7 +32,7 @@ export default function Jogo(props){
 
 
    function teste(letra,i){
-    if (clicadas.includes(letra)){
+    if (clicadas.includes(letra) || estilo=='vermelho'){
         forma[i] = letra;
         return (letra);
     } else{

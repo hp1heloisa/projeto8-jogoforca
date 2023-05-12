@@ -25,10 +25,10 @@ export default function Letras(props) {
             {alfabeto.map(
                 (letra, i) => {
                      if  (!props.pode || contagem>5 || teste==palavra.length){
-                        if (teste==palavra.length && palavra.length>0){
-                            setEstilo('verde')
-                        } else if(contagem>0){
+                        if(contagem>5){
                             setEstilo('vermelho')
+                        } else if (teste==palavra.length && palavra.length>0 ){
+                            setEstilo('verde')
                         }
                        return(<button className='geral letraOff' onClick={clicarNaLetra} key={i} disabled>{letra.toUpperCase()}
                         </button>);
