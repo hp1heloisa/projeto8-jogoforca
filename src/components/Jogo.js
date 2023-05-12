@@ -33,9 +33,12 @@ export default function Jogo(props){
         }
     }
 
+    function removerAcentos(texto) {
+        return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      }
 
    function renderizaPalavra(letra,i){
-    if (clicadas.includes(letra) || estilo=='vermelho'){
+    if (clicadas.includes(removerAcentos(letra)) || estilo=='vermelho'){
         forma[i] = letra;
         return (letra);
     } else{

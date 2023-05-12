@@ -1,8 +1,12 @@
 export default function Letras(props) {
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     const {clicadas, setClicadas, contagem, setContagem, forma, palavra, setEstilo, setHabilita} = props;
+    
+    function removerAcentos(texto) {
+        return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
     function clicarNaLetra(i) {
-        if (!props.palavra.split('').includes(alfabeto[i]) && contagem<6){
+        if (!removerAcentos(palavra).split('').includes(alfabeto[i]) && contagem<6){
             setContagem(contagem+1);
         }
         const nova = [...clicadas,alfabeto[i]]
@@ -17,9 +21,6 @@ export default function Letras(props) {
 
 
     console.log(palavra)
-    console.log(forma)
-    console.log(clicadas);
-    console.log(contagem);
     
     return(
         <div className="letras">
