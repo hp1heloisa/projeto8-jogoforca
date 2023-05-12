@@ -1,10 +1,6 @@
-import { useState } from "react"
-
-let contagem = 0;
 export default function Letras(props) {
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const {clicadas, setClicadas, contagem, setContagem, forma, palavra, setEstilo, 
-        setHabilita} = props;
+    const {clicadas, setClicadas, contagem, setContagem, forma, palavra, setEstilo, setHabilita} = props;
     function clicarNaLetra(i) {
         if (!props.palavra.split('').includes(alfabeto[i]) && contagem<6){
             setContagem(contagem+1);
@@ -32,10 +28,10 @@ export default function Letras(props) {
                      if  (!props.pode || contagem>5 || teste==palavra.length){
                         if(contagem>5){
                             setEstilo('vermelho');
-                            setHabilita('');
+                            setHabilita('disabled');
                         } else if (teste==palavra.length && palavra.length>0 ){
                             setEstilo('verde');
-                            setHabilita('');
+                            setHabilita('disabled');
                         }
                        return(<button className='geral letraOff' onClick={clicarNaLetra} key={i} disabled data-test="letter">{letra.toUpperCase()}
                         </button>);
