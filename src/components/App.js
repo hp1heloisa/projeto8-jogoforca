@@ -10,16 +10,17 @@ export default function App() {
   const [pode, setPode] = useState(false);
   const [palavra,setPalavra] = useState('');
   const [forma,setFoma] = useState([]);
+  const [habilita, setHabilita] = useState('');
   const [estilo,setEstilo] = useState('')
 
 
   return (
     <div>
-      <Jogo setPode={setPode} pode={pode} palavras={palavras} palavra={palavra} setPalavra={setPalavra} contagem={contagem} 
-      clicadas={clicadas} forma={forma} setFoma={setFoma} estilo={estilo} />
+      <Jogo setContagem={setContagem} setClicadas={setClicadas} setPode={setPode} pode={pode} palavras={palavras} palavra={palavra} setPalavra={setPalavra} contagem={contagem} 
+      clicadas={clicadas} forma={forma} setFoma={setFoma} estilo={estilo} habilita={habilita} setHabilita={setHabilita} setEstilo={setEstilo}/>
       
-      <Letras pode={pode} palavra={palavra} clicadas={clicadas} setClicadas={setClicadas} 
-      contagem={contagem} setContagem={setContagem} forma={forma} setEstilo={setEstilo}/>
+      <Letras pode={pode} palavra={palavra} clicadas={clicadas} setClicadas={setClicadas} setHabilita={setHabilita}
+       contagem={contagem} setContagem={setContagem} forma={forma} setEstilo={setEstilo}/>
     </div>
   );
 }

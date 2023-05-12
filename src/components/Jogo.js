@@ -9,8 +9,8 @@ import forca6 from '../assets/forca6.png';
 
 export default function Jogo(props){
 
-    const {palavras,setPalavra,setPode,pode,contagem,clicadas,palavra,forma,setFoma,estilo} = props
-    const [habilita, setHabilita] = useState('');
+    const {palavras,setPalavra,setPode,pode,contagem,setContagem,clicadas,setClicadas,palavra,
+        forma,setFoma,estilo, habilita, setHabilita,setEstilo} = props
     const imagens = [forca0,forca1,forca2,forca3,forca4,forca5,forca6];
     function compararAleatorio() {
         return Math.random() - 0.5;
@@ -20,8 +20,11 @@ export default function Jogo(props){
         if (true){
             props.palavras.sort(compararAleatorio)
             setPalavra(palavras[0]);
-            setPode(true)
+            setPode(true);
             setHabilita('disabled');
+            setContagem(0);
+            setClicadas([]);
+            setEstilo('');
             const nova = [];
             for (let i=0;i<palavras[0].length;i++){
                 nova.push(<div>_</div>);
@@ -31,7 +34,7 @@ export default function Jogo(props){
     }
 
 
-   function teste(letra,i){
+   function renderizaPalavra(letra,i){
     if (clicadas.includes(letra) || estilo=='vermelho'){
         forma[i] = letra;
         return (letra);
@@ -42,10 +45,10 @@ export default function Jogo(props){
     
     return(
         <div className="superior">
-            <img src={imagens[contagem]} alt={imagens[contagem]} />
+            <img src={imagens[contagem]} alt={imagens[contagem]} data-test="game-image"/>
             <div className='direita'>
-                <button className="escolha" onClick={playGame} disabled={habilita}>Escolher Palavra</button>
-                {pode ? <div className={`escolhida ${estilo}`}>{palavra.split('').map((letra,i) => teste(letra,i))} </div> : '' }
+                <button className="escolha" onClick={playGame} disabled={habilita} data-test="choose-word">Escolher Palavra</button>
+                {pode ? <div className={`escolhida ${estilo}`} data-test="word">{palavra.split('').map((letra,i) => renderizaPalavra(letra,i))} </div> : '' }
             </div>
         </div>
     )

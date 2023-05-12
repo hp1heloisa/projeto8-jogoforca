@@ -3,7 +3,8 @@ import { useState } from "react"
 let contagem = 0;
 export default function Letras(props) {
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    const {clicadas, setClicadas, contagem, setContagem, forma, palavra, setEstilo} = props;
+    const {clicadas, setClicadas, contagem, setContagem, forma, palavra, setEstilo, 
+        setHabilita} = props;
     function clicarNaLetra(i) {
         if (!props.palavra.split('').includes(alfabeto[i]) && contagem<6){
             setContagem(contagem+1);
@@ -18,7 +19,11 @@ export default function Letras(props) {
         }
     }
 
+
     console.log(palavra)
+    console.log(forma)
+    console.log(clicadas);
+    console.log(contagem);
     
     return(
         <div className="letras">
@@ -26,18 +31,20 @@ export default function Letras(props) {
                 (letra, i) => {
                      if  (!props.pode || contagem>5 || teste==palavra.length){
                         if(contagem>5){
-                            setEstilo('vermelho')
+                            setEstilo('vermelho');
+                            setHabilita('');
                         } else if (teste==palavra.length && palavra.length>0 ){
-                            setEstilo('verde')
+                            setEstilo('verde');
+                            setHabilita('');
                         }
-                       return(<button className='geral letraOff' onClick={clicarNaLetra} key={i} disabled>{letra.toUpperCase()}
+                       return(<button className='geral letraOff' onClick={clicarNaLetra} key={i} disabled data-test="letter">{letra.toUpperCase()}
                         </button>);
                     } else{
                         if (clicadas.includes(alfabeto[i])){
-                            return(<button className='geral letraOff' onClick={() => clicarNaLetra(i)} key={i} disabled>{letra.toUpperCase()}
+                            return(<button className='geral letraOff' onClick={() => clicarNaLetra(i)} key={i} disabled data-test="letter">{letra.toUpperCase()}
                         </button>);
                         } else{
-                            return(<button className='geral letraOn' onClick={() => clicarNaLetra(i)} key={i}>{letra.toUpperCase()}
+                            return(<button className='geral letraOn' onClick={() => clicarNaLetra(i)} key={i} data-test="letter">{letra.toUpperCase()}
                         </button>);
                         }
                     }
