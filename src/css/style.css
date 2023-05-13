@@ -96,6 +96,7 @@ img{
 .divChute{
     display: flex;
     align-items: center;
+    margin-bottom: 56px;
 }
 .descricao{
     font-family: 'Roboto';

@@ -1,36 +1,27 @@
-import forca0 from '../assets/forca0.png';
-import forca1 from '../assets/forca1.png';
-import forca2 from '../assets/forca2.png';
-import forca3 from '../assets/forca3.png';
-import forca4 from '../assets/forca4.png';
-import forca5 from '../assets/forca5.png';
-import forca6 from '../assets/forca6.png';
+import imagens from "../imagens";
 
 export default function Jogo(props){
 
-    const {palavras,setPalavra,setPode,pode,contagem,setContagem,clicadas,setClicadas,palavra,
+    const {palavras,setPalavra,setPode,pode,contagem,setContagem,letrasClicadas,setLetrasClicadas,palavra,
         forma,setForma,estilo, setEstilo, setHabilita, setChute} = props
-    const imagens = [forca0,forca1,forca2,forca3,forca4,forca5,forca6];
-    function compararAleatorio() {
+    function aleatorizarPalavras() {
         return Math.random() - 0.5;
       }
     
     function playGame(){
-        if (true){
-            props.palavras.sort(compararAleatorio)
-            setPalavra(palavras[0]);
-            setPode(true);
-            setContagem(0);
-            setClicadas([]);
-            setEstilo('');
-            setHabilita('');
-            setChute('');
-            const nova = [];
-            for (let i=0;i<palavras[0].length;i++){
-                nova.push(<div key={i}>_</div>);
-            }
-            setForma(nova);
+        palavras.sort(aleatorizarPalavras)
+        setPalavra(palavras[0]);
+        setPode(true);
+        setContagem(0);
+        setLetrasClicadas([]);
+        setEstilo('');
+        setHabilita(false);
+        setChute('');
+        const novaForma = [];
+        for (let i=0;i<palavras[0].length;i++){
+            novaForma.push(<div key={i}>_</div>);
         }
+        setForma(novaForma);
     }
 
     function removerAcentos(texto) {
@@ -38,7 +29,7 @@ export default function Jogo(props){
       }
 
    function renderizaPalavra(letra,i){
-    if (clicadas.includes(removerAcentos(letra)) || estilo=='vermelho'){
+    if (letrasClicadas.includes(removerAcentos(letra)) || estilo==='vermelho'){
         forma[i] = letra;
         return (letra);
     } else{

@@ -7,10 +7,15 @@ export default function Chute(props){
             setContagem(6)
         }
     }
+    function clicarNoEnter(event){
+        if (event.keyCode === 13) {
+            chutar();
+        }
+    }
     return(
         <div className="divChute">
             <div className="descricao">Já sei a palavra!</div>
-            <input className="descricao" value={chute} disabled={habilita} onChange={e => setChute(e.target.value)} data-test="guess-input"/>
+            <input className="descricao" value={chute} disabled={habilita} onChange={e => setChute(e.target.value)} onKeyDown={clicarNoEnter} data-test="guess-input"/>
             <button className="chute" onClick={chutar} disabled={habilita} data-test="guess-button">Chutar</button>
         </div>
     )
